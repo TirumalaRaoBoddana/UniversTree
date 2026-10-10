@@ -1,0 +1,48 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isPlatformAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'platform_admin' ||
+        request.auth.token.role == 'super_admin' ||
+        request.auth.token.email == 'universtreeapp@gmail.com'
+      );
+    }
+
+    // 1. Profile Photos
+    match /users/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // 2. Institution Applications
+    match /college_registration_requests/{requestId}/documents/{documentId}/{fileName} {
+      allow read: if isPlatformAdmin() || (isAuthenticated() && resource.metadata.uploadedBy == request.auth.uid);
+
+      allow write: if isAuthenticated()
+                   && request.resource.size <= 10 * 1024 * 1024
+                   && request.resource.contentType.matches('application/pdf|image/.*')
+                   && request.resource.metadata.uploadedBy == request.auth.uid;
+
+      allow delete: if isPlatformAdmin() || (isAuthenticated() && resource.metadata.uploadedBy == request.auth.uid);
+    }
+
+    // 3. Official Institutional Documents
+    match /colleges/{collegeId}/documents/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isPlatformAdmin();
+    }
+
+    // 4. Academic Resources
+    match /colleges/{collegeId}/resources/{userId}/{fileName} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update, delete: if isAuthenticated() && (request.auth.uid == userId || isPlatformAdmin());
+    }
+  }
+}

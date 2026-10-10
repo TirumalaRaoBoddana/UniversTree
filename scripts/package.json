@@ -1,0 +1,12 @@
+{
+  "name": "universtree-admin-scripts",
+  "version": "1.0.0",
+  "description": "Secure one-time Platform Administrator provisioning script for Universtree",
+  "main": "provision_platform_admin.js",
+  "scripts": {
+    "provision-admin": "node provision_platform_admin.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}

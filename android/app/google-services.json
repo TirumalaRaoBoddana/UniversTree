@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "517782171043",
+    "firebase_url": "https://universtree-3d91e-default-rtdb.firebaseio.com",
+    "project_id": "universtree-3d91e",
+    "storage_bucket": "universtree-3d91e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517782171043:android:8c75a168698373293dbe16",
+        "android_client_info": {
+          "package_name": "com.universtree.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517782171043-oq5i6jkcqf69kta25vdf0ql5vdk7a46k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.universtree.app",
+            "certificate_hash": "0d3fde63e91eb72e3cb50711fb7455e96ac33a0a"
+          }
+        },
+        {
+          "client_id": "517782171043-e84bobcsrimqjctii0gqmm1cs4s7amr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdcvzTjEAuRT8iEG1SiIPTsc-15nJVTuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517782171043-e84bobcsrimqjctii0gqmm1cs4s7amr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
